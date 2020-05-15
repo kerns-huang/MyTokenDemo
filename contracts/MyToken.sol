@@ -253,7 +253,7 @@ contract StandardToken is ERC20, BasicToken {
 
 contract PausableToken is StandardToken, Pausable {
 
-    function transfer(address _to, uint256 _value) public whenNotPaused returns (bool) {
+   function transfer(address _to, uint256 _value) public  whenNotPaused  returns (bool)  {
         return super.transfer(_to, _value);
     }
 
@@ -282,14 +282,14 @@ contract MyToken is PausableToken {
     /* 我的token的精确位数 */
     uint256 public decimals = 18;
 
-    constructor() public {
+    constructor(uint256 initialSupply, string memory tokenName,string memory tokenSymbol) public {
         /* 我的token发行总量 */
-        totalSupply = 1000 * 10 ** uint256(decimals);
+        totalSupply = initialSupply * 10 ** uint256(decimals);
         /* 我的token余额 */
         balances[msg.sender] = totalSupply;
         /* 初始化我的token的名称 */
-        name = "kernsToken";
+        name = tokenName;
         /* 我的token的icon */
-        symbol = "";
+        symbol = tokenSymbol;
     }
 }
